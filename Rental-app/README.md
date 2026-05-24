@@ -1,16 +1,9 @@
 ## Rental-Project
-
-
-
-
-
-
-
-
-
-
+A front rental project is a web or mobile application designed to help users rent properties, vehicles, equipment, or other items online. The platform typically allows users to browse available rentals, view detailed information, make bookings, and manage payments easily.
 
 # React + Vite
+To start the project Run: 
+## npm run dev
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
