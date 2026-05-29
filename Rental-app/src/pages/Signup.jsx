@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import Logo from './../assets/Logo';
 import { useNavigate } from 'react-router-dom';
+import Spinner from './../assets/Spinner';
 
 export default function Signup() {
     const [firstName, setFirstName] = useState("");
@@ -9,10 +10,12 @@ export default function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         try {
             const response = await fetch("http://localhost:5000/api/signup", {
                 method: "POST",
@@ -28,9 +31,15 @@ export default function Signup() {
             });
             const data = await response.json();
             console.log(data);
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPassword("");
+            setLoading(false);
             navigate("/login");
         } catch (error) {
             console.error("Error signing up:", error);
+            setLoading(false);
         }
     };
 
@@ -40,45 +49,52 @@ export default function Signup() {
         }}>
             <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow">
                 <Logo size="md" />
-                <h2 className="text-2xl font-bold font-serif text-center">
+                <h2 className="text-xl  font-serif text-center">
                     Signup
                 </h2>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="firstname">First Name</label>
+                        <span className="text-red-500 px-2">*</span>
                         <input
                             type="text"
                             name="firstname"
                             placeholder="Enter your first name"
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
+                            required
                             className="w-full px-3 py-2 border font-sans border-gray-300 rounded-xl outline-none"
                         />
                     </div>
                     <div className="my-4">
                         <label htmlFor="lastname">Last Name</label>
+                        <span className="text-red-500 px-2">*</span>
                         <input
                             type="text"
                             name="lastname"
                             placeholder="Enter your last name"
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
+                            required
                             className="w-full px-3 py-2 border font-sans border-gray-300 rounded-xl outline-none"
                         />
                     </div>
                     <div className="my-4">
                         <label htmlFor="email">Email</label>
+                        <span className="text-red-500 px-2">*</span>
                         <input
                             type="email"
                             name="email"
                             placeholder="Enter your email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                             className="w-full px-3 py-2 border font-sans border-gray-300 rounded-xl outline-none"
                         />
                     </div>
                     <div className="my-6">
                         <label htmlFor="password">Password</label>
+                        <span className="text-red-500 px-2">*</span>
                         <div className="w-full flex px-3 py-2 border border-gray-300 rounded-xl ">
                             <input
                                 type={showPassword ? "text" : "password"}
@@ -98,8 +114,8 @@ export default function Signup() {
                             </button>
                         </div>
                     </div>
-                    <button type="submit" className="w-full py-2 bg-navy text-white rounded hover:bg-navy-light">
-                        Signup
+                    <button type="submit" className="w-full py-2 bg-navy text-white rounded hover:bg-navy-light" disabled={loading}>
+                        {loading ? <Spinner size="sm" color="white" /> : "Signup"}
                     </button>
                 </form>
             </div>
