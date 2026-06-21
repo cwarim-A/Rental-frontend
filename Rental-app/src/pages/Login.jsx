@@ -26,7 +26,7 @@ export default function Login() {
                 setEmail("");
                 setPassword("");
                 setLoading(false);
-                navigate("/home")
+                navigate("/dashboard");
 
         }catch(error){
             console.error("Login error:", error);
@@ -41,7 +41,7 @@ export default function Login() {
           }}
     >
        <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow">
-              <Logo size="lg" />
+              <Logo size="lg"  />
               <h2 className="text-xl  font-serif text-center">
                 Login
             

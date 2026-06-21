@@ -48,7 +48,7 @@ export default function Signup() {
             background: "linear-gradient(135deg, #0a1628 50%, #ffffff 50%)"
         }}>
             <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow">
-                <Logo size="md" />
+                <Logo size="md"  />
                 <h2 className="text-xl  font-serif text-center">
                     Signup
                 </h2>

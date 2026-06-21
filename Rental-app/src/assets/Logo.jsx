@@ -4,11 +4,12 @@ export default function Logo({ size = "md" }) {
         md: "text-2xl",
         lg: "text-4xl",
     };
+    
 
     return (
         <div className="flex items-center justify-center gap-2">
             {/* Icon box */}
-            <div className="bg-navy p-2 rounded-xl">
+            <div className="bg-gray- p-2 rounded-xl">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6 text-white"
